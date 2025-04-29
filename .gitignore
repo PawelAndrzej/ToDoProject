@@ -1,0 +1,8 @@
+﻿################################################################################
+# Ten plik .gitignore został utworzony automatycznie przez Microsoft(R) Visual Studio.
+################################################################################
+
+/ToDoWebApplication/.vs/ToDoWebApplication
+/ToDoWebApplication/ToDoWebApplication/bin/Debug/net8.0
+/ToDoWebApplication/ToDoWebApplication/obj/Debug/net8.0
+/.vs
