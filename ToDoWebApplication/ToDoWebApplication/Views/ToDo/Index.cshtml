@@ -2,11 +2,37 @@
 
 @{
     ViewData["Title"] = "Index";
+    ToDoModelFilter filter = ViewData["Filter"] as ToDoModelFilter;
 }
 
 <h1>Index</h1>
 
 <p>
+    <div>
+        @Html.Label("Search text")
+        @Html.TextBoxFor(x => filter.SearchText)
+    </div>
+    <div>
+        @Html.RadioButton("ExpireDate", filter, filter.All)
+        @Html.Label("All")
+    </div>
+    <div>
+        @Html.RadioButton("ExpireDate", filter, filter.Today)
+        @Html.Label("Today")
+    </div>
+    <div>
+        @Html.RadioButton("ExpireDate", filter, filter.NextDay)
+        @Html.Label("Next day")
+    </div>
+    <div>
+        @Html.RadioButton("ExpireDate", filter, filter.IncommingWeek)
+        @Html.Label("Incomming week")
+    </div>
+    <div>
+        @Html.ActionLink("Filter", "Index", filter)
+    </div>
+    <div></div>
+    <div></div>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">

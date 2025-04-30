@@ -15,10 +15,85 @@ namespace ToDoWebApplication.Controllers
             this.session = session;
         }
         // GET: ToDoController
+        /*
         public ActionResult Index()
         {
             var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
+            ViewData["Filter"] = new ToDoModelFilter()
+            {
+                All = true
+            };
             return View(listToDo);
+        }*/
+        public ActionResult Index(ToDoModelFilter filter)
+        {
+            if (filter == null)
+            {
+                var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
+                ViewData["Filter"] = new ToDoModelFilter()
+                {
+                    All = true
+                };
+                return View(listToDo);
+            }
+            else
+            {
+                int? id = null;
+                try
+                {
+                    id = int.Parse(filter.SearchText);
+                }
+                catch (Exception)
+                {
+
+                }
+
+                IEnumerable<ToDoModel> listToDo = new List<ToDoModel>();
+                if (id != null)
+                {
+                    ((List<ToDoModel>)listToDo).Add(session.Get<ToDoModel>(id.Value));
+                }
+                else
+                {
+                    if (String.IsNullOrWhiteSpace(filter.SearchText))
+                    {
+                        listToDo = session.Query<ToDoModel>().Select(i => i);
+
+                    }
+                    else
+                    {
+                        listToDo = session.Query<ToDoModel>().Select(i => i)
+                            .Where(i => i.Title.ToLower().Contains(filter.SearchText.ToLower())
+                            || i.Description.ToLower().Contains(filter.SearchText.ToLower())
+                            );
+                    }
+                }
+                if (filter.Today)
+                {
+                    listToDo = listToDo.Where(i => i.ExpiryDateTime.Date == DateTime.Today);
+                }
+                if (filter.NextDay)
+                {
+                    listToDo = listToDo.Where(i => i.ExpiryDateTime.Date == DateTime.Today.AddDays(1));
+                }
+                if (filter.IncommingWeek)
+                {
+                    DateTime startNextWeek = DateTime.Today;
+                    for (int i = 1; i <= 7; i++)
+                    {
+                        startNextWeek = startNextWeek.AddDays(1);
+                        if (startNextWeek.DayOfWeek == DayOfWeek.Monday)
+                        {
+                            break;
+                        }
+                    }
+                    listToDo = listToDo.Where(i => i.ExpiryDateTime.Date >= startNextWeek && i.ExpiryDateTime <= startNextWeek.AddDays(6));
+
+                }
+                ViewData["Filter"] = filter;
+                listToDo = listToDo.ToList();
+                return View(listToDo);
+            }
         }
 
         public ActionResult IncomingToDo()
