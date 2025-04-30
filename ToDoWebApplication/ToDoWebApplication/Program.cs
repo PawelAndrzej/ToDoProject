@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Add NHibarnate
-string connectionString = System.Configuration.ConfigurationManager.AppSettings["DefaultConnection"] ?? String.Empty;
-builder.Services.AddNHibernateSqlServer(connectionString);
+builder.Services.AddNHibernateSqlServer("Server=localhost;Port=3306;Database=todo;Uid=root;Pwd=Test123##;");
 
 var app = builder.Build();
 

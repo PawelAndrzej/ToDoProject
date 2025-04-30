@@ -18,7 +18,7 @@ namespace ToDoWebApplication.Controllers
                 {
                     Complete = 10,
                     Description = "Test description",
-                    Done = false,
+                    Done = 0,
                     ExpiryDateTime = DateTime.Now,
                     Title = "Test title"
                 },
@@ -26,7 +26,7 @@ namespace ToDoWebApplication.Controllers
                 {
                     Complete = 20,
                     Description = "Test description2",
-                    Done = false,
+                    Done = 0,
                     ExpiryDateTime = DateTime.Now.AddDays(7),
                     Title = "Test title2"
 
@@ -43,7 +43,7 @@ namespace ToDoWebApplication.Controllers
                 {
                     Complete = 10,
                     Description = "Test description",
-                    Done = false,
+                    Done = 0,
                     ExpiryDateTime = DateTime.Today.AddDays(1).AddMinutes(-1),
                     Title = "Test title"
                 },
@@ -51,7 +51,7 @@ namespace ToDoWebApplication.Controllers
                 {
                     Complete = 20,
                     Description = "Test description2",
-                    Done = false,
+                    Done = 0,
                     ExpiryDateTime = DateTime.Today.AddDays(7),
                     Title = "Test title2"
 

@@ -1,4 +1,5 @@
-﻿using NHibernate.Cfg;
+﻿using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Connection;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -31,8 +32,21 @@ namespace ToDoWebApplication.Settings
            var mappingDocument = mapping.CompileMappingForAllExplicitlyAddedEntities();
             cfg.AddMapping(mappingDocument);
             services.AddHibernate(cfg);
-            cfg.BuildSessionFactory();
-            
+
+            ISessionFactory sessions = cfg.BuildSessionFactory();
+
+            ToDoModel m = new ToDoModel()
+            {
+               Complete = 10,
+               Done = 1
+            };
+
+
+            var os = sessions.OpenSession();
+            os.SaveOrUpdate(m);
+            os.Flush();
+            os.Refresh(m);
+            os.Close();
 
             return services;
         }

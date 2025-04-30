@@ -16,7 +16,7 @@
                 return "Default description";
             }
         }
-        public static int ToDoDefaultComplete
+        public static byte ToDoDefaultComplete
         {
             get
             {

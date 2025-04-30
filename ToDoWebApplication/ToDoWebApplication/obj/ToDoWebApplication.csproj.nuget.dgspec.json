@@ -65,6 +65,14 @@
             "NHibernate.NetCore": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Security.Permissions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
