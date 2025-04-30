@@ -1,4 +1,4 @@
-﻿using ToDoWebApplication.Configuration;
+﻿using ToDoWebApplication.Settings;
 
 namespace ToDoWebApplication.Models
 {
@@ -12,10 +12,10 @@ namespace ToDoWebApplication.Models
         public bool Done { get; set; }
         public ToDoModel()
         {
-            this.Title = Settings.ToDoDefaultTitle;
-            this.Description = Settings.ToDoDefaultDescription;
-            this.Complete = Settings.ToDoDefaultComplete;
-            this.ExpiryDateTime = Settings.ToDoDefaultExpiryDateTime;
+            this.Title = Setting.ToDoDefaultTitle;
+            this.Description = Setting.ToDoDefaultDescription;
+            this.Complete = Setting.ToDoDefaultComplete;
+            this.ExpiryDateTime = Setting.ToDoDefaultExpiryDateTime;
             this.Done = false;
         }
     }

@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="NHibernate.AspNetCore.Identity" Version="8.0.1" />
+    <PackageReference Include="NHibernate.NetCore" Version="8.0.1" />
   </ItemGroup>
 
 </Project>

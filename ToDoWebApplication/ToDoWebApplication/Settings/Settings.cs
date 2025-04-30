@@ -1,6 +1,6 @@
-﻿namespace ToDoWebApplication.Configuration
+﻿namespace ToDoWebApplication.Settings
 {
-    public class Settings
+    public class Setting
     {
         public static string ToDoDefaultTitle
         {

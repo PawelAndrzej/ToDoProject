@@ -53,6 +53,18 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.5.2, )"
+            },
+            "NHibernate.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "NHibernate.NetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             }
           },
           "imports": [

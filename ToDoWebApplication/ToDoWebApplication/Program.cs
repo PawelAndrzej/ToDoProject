@@ -1,7 +1,14 @@
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using ToDoWebApplication.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add NHibarnate
+string connectionString = System.Configuration.ConfigurationManager.AppSettings["DefaultConnection"] ?? String.Empty;
+builder.Services.AddNHibernateSqlServer(connectionString);
 
 var app = builder.Build();
 
@@ -23,5 +30,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=ToDo}/{action=Index}/{id?}");
+
+
+
 
 app.Run();
