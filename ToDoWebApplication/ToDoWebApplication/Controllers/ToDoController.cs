@@ -30,13 +30,22 @@ namespace ToDoWebApplication.Controllers
         // GET: ToDoController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var toDo = session.Get<ToDoModel>(id);
+            return View(toDo);
         }
 
         // GET: ToDoController/Create
         public ActionResult Create()
         {
-            return View();
+            ToDoModel toDo = new ToDoModel()
+            {
+                Title = Settings.Setting.ToDoDefaultTitle,
+                Complete = Settings.Setting.ToDoDefaultComplete,
+                Description = Settings.Setting.ToDoDefaultDescription,
+                ExpiryDateTime = Settings.Setting.ToDoDefaultExpiryDateTime,
+                Done = 0
+            };
+            return View(toDo);
         }
 
         // POST: ToDoController/Create
@@ -44,8 +53,16 @@ namespace ToDoWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            ToDoModel toDo = new ToDoModel();
             try
             {
+                toDo.Complete = byte.Parse(collection["Complete"].FirstOrDefault() ?? "0");
+                toDo.Title = collection["Title"].FirstOrDefault() ?? String.Empty;
+                toDo.Done = 0;
+                toDo.Description = collection["Description"].FirstOrDefault() ?? String.Empty;
+                toDo.ExpiryDateTime = DateTime.Parse(collection["ExpiryDateTime"].FirstOrDefault() ?? DateTime.Today.ToString());
+                session.SaveOrUpdate(toDo);
+                session.Flush();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -57,7 +74,8 @@ namespace ToDoWebApplication.Controllers
         // GET: ToDoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var toDo = session.Get<ToDoModel>(id);
+            return View(toDo);
         }
 
         // POST: ToDoController/Edit/5
@@ -65,8 +83,15 @@ namespace ToDoWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
+            var toDo = session.Get<ToDoModel>(id);
             try
             {
+                toDo.Complete = byte.Parse(collection["Complete"].FirstOrDefault() ?? "0");
+                toDo.Title = collection["Title"].FirstOrDefault() ?? String.Empty;
+                toDo.Description = collection["Description"].FirstOrDefault() ?? String.Empty;
+                toDo.ExpiryDateTime = DateTime.Parse(collection["ExpiryDateTime"].FirstOrDefault() ?? DateTime.Today.ToString());
+                session.SaveOrUpdate(toDo);
+                session.Flush();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,7 +103,8 @@ namespace ToDoWebApplication.Controllers
         // GET: ToDoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var toDo = session.Get<ToDoModel>(id);
+            return View(toDo);
         }
 
         // POST: ToDoController/Delete/5
@@ -88,6 +114,9 @@ namespace ToDoWebApplication.Controllers
         {
             try
             {
+                var toDo = session.Get<ToDoModel>(id);
+                session.Delete(toDo);
+                session.Flush();
                 return RedirectToAction(nameof(Index));
             }
             catch

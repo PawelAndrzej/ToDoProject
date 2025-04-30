@@ -15,11 +15,7 @@ namespace ToDoWebApplication.Models
         
         public ToDoModel()
         {
-            this.Title = Setting.ToDoDefaultTitle;
-            this.Description = Setting.ToDoDefaultDescription;
-            this.Complete = Setting.ToDoDefaultComplete;
-            this.ExpiryDateTime = Setting.ToDoDefaultExpiryDateTime;
-            this.Done = 0;
+            
         }
     }
 }
