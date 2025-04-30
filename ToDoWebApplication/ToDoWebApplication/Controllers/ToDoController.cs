@@ -9,55 +9,22 @@ namespace ToDoWebApplication.Controllers
 {
     public class ToDoController : Controller
     {
+        private NHibernate.ISession session;
+        public ToDoController(NHibernate.ISession session)
+        {
+            this.session = session;
+        }
         // GET: ToDoController
         public ActionResult Index()
         {
-            List<ToDoModel> tempList = new List<ToDoModel>()
-            {
-                new ToDoModel()
-                {
-                    Complete = 10,
-                    Description = "Test description",
-                    Done = 0,
-                    ExpiryDateTime = DateTime.Now,
-                    Title = "Test title"
-                },
-                new ToDoModel()
-                {
-                    Complete = 20,
-                    Description = "Test description2",
-                    Done = 0,
-                    ExpiryDateTime = DateTime.Now.AddDays(7),
-                    Title = "Test title2"
-
-                }
-            };
-            return View(tempList);
+            var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
+            return View(listToDo);
         }
 
         public ActionResult IncomingToDo()
         {
-            List<ToDoModel> tempList = new List<ToDoModel>()
-            {
-                new ToDoModel()
-                {
-                    Complete = 10,
-                    Description = "Test description",
-                    Done = 0,
-                    ExpiryDateTime = DateTime.Today.AddDays(1).AddMinutes(-1),
-                    Title = "Test title"
-                },
-                new ToDoModel()
-                {
-                    Complete = 20,
-                    Description = "Test description2",
-                    Done = 0,
-                    ExpiryDateTime = DateTime.Today.AddDays(7),
-                    Title = "Test title2"
-
-                }
-            };
-            return View(tempList);
+            var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
+            return View(listToDo);
         }
 
         // GET: ToDoController/Details/5

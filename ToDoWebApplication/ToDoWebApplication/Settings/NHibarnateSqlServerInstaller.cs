@@ -10,7 +10,7 @@ namespace ToDoWebApplication.Settings
 {
     public static class NHibernateSqlServerInstaller
     {
-        public static IServiceCollection AddNHibernateSqlServer(this IServiceCollection services, string cnString)
+        public static Configuration BuildHNibernateConfiguration(this IServiceCollection services, string cnString)
         {
             var cfg = new Configuration();
 
@@ -33,22 +33,7 @@ namespace ToDoWebApplication.Settings
             cfg.AddMapping(mappingDocument);
             services.AddHibernate(cfg);
 
-            ISessionFactory sessions = cfg.BuildSessionFactory();
-
-            ToDoModel m = new ToDoModel()
-            {
-               Complete = 10,
-               Done = 1
-            };
-
-
-            var os = sessions.OpenSession();
-            os.SaveOrUpdate(m);
-            os.Flush();
-            os.Refresh(m);
-            os.Close();
-
-            return services;
+            return cfg;
         }
     }
 }
