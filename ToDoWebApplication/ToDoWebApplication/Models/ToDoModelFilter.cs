@@ -2,21 +2,21 @@
 
 namespace ToDoWebApplication.Models
 {
+    public enum ExpireDateType
+    {
+        All,
+        Today,
+        Nextday,
+        IncommingWeek
+    }
     public class ToDoModelFilter
     {
-        [DisplayName("All")]
-        public virtual bool All{ get; set; }
-        [DisplayName("Today")]
-        public virtual bool Today { get; set; }
-        [DisplayName("Next day")]
-        public virtual bool NextDay { get; set; }
-        [DisplayName("Incomming week")]
-        public virtual bool IncommingWeek { get; set; }
+        public virtual ExpireDateType ExpireDateType { get; set; }
         [DisplayName("Search text")]
         public virtual string SearchText { get; set; }
         public ToDoModelFilter()
         {
-            All = true;
+            ExpireDateType = ExpireDateType.All;
             SearchText = String.Empty;
         }
     }

@@ -2,34 +2,37 @@
 
 @{
     ViewData["Title"] = "Index";
-    ToDoModelFilter filter = ViewData["Filter"] as ToDoModelFilter;
+    ToDoModelFilter filter = ViewData["Filter"] as ToDoModelFilter ?? new ToDoModelFilter();
 }
 
 <h1>Index</h1>
 
 <p>
+    @using (Html.BeginForm("Index", "ToDo", FormMethod.Post,  filter ))
+    {
+        <div>
+            @Html.Label("Search text")
+            @Html.TextBoxFor(x => filter.SearchText)
+            <input type="submit" value="Filter" class="btn btn-primary btn-sm" />
+        </div>
+        
+            <label class="radio-inline margin-rightt-ten margin-leftt-five margin-top-none">
+                @(Html.RadioButtonFor<ExpireDateType>(m => filter.ExpireDateType, ExpireDateType.All, null))
+                @Html.Label("All")
+            @(Html.RadioButtonFor<ExpireDateType>(m => filter.ExpireDateType, ExpireDateType.Today, null))
+            @Html.Label("Today")
+            @(Html.RadioButtonFor<ExpireDateType>(m => filter.ExpireDateType, ExpireDateType.Nextday, null))
+            @Html.Label("Next day")
+            @(Html.RadioButtonFor<ExpireDateType>(m => filter.ExpireDateType, ExpireDateType.IncommingWeek, null))
+            @Html.Label("Incomming week")
+            </label>
+        
+        
+        
+    }
+    
     <div>
-        @Html.Label("Search text")
-        @Html.TextBoxFor(x => filter.SearchText)
-    </div>
-    <div>
-        @Html.RadioButton("ExpireDate", filter, filter.All)
-        @Html.Label("All")
-    </div>
-    <div>
-        @Html.RadioButton("ExpireDate", filter, filter.Today)
-        @Html.Label("Today")
-    </div>
-    <div>
-        @Html.RadioButton("ExpireDate", filter, filter.NextDay)
-        @Html.Label("Next day")
-    </div>
-    <div>
-        @Html.RadioButton("ExpireDate", filter, filter.IncommingWeek)
-        @Html.Label("Incomming week")
-    </div>
-    <div>
-        @Html.ActionLink("Filter", "Index", filter)
+        
     </div>
     <div></div>
     <div></div>

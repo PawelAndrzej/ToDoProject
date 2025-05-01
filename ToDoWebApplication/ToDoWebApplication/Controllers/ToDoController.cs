@@ -15,25 +15,22 @@ namespace ToDoWebApplication.Controllers
             this.session = session;
         }
         // GET: ToDoController
-        /*
+        
         public ActionResult Index()
         {
             var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
-            ViewData["Filter"] = new ToDoModelFilter()
-            {
-                All = true
-            };
+            ViewData["Filter"] = new ToDoModelFilter();
+            
             return View(listToDo);
-        }*/
+        }
+        [HttpPost]
         public ActionResult Index(ToDoModelFilter filter)
         {
             if (filter == null)
             {
                 var listToDo = session.Query<ToDoModel>().Select(i => i).ToList();
-                ViewData["Filter"] = new ToDoModelFilter()
-                {
-                    All = true
-                };
+                ViewData["Filter"] = new ToDoModelFilter();
+                
                 return View(listToDo);
             }
             else
@@ -68,15 +65,15 @@ namespace ToDoWebApplication.Controllers
                             );
                     }
                 }
-                if (filter.Today)
+                if (filter.ExpireDateType == ExpireDateType.Today)
                 {
                     listToDo = listToDo.Where(i => i.ExpiryDateTime.Date == DateTime.Today);
                 }
-                if (filter.NextDay)
+                else if (filter.ExpireDateType == ExpireDateType.Nextday)
                 {
                     listToDo = listToDo.Where(i => i.ExpiryDateTime.Date == DateTime.Today.AddDays(1));
                 }
-                if (filter.IncommingWeek)
+                else if (filter.ExpireDateType == ExpireDateType.IncommingWeek)
                 {
                     DateTime startNextWeek = DateTime.Today;
                     for (int i = 1; i <= 7; i++)
