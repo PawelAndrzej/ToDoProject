@@ -46,11 +46,14 @@ namespace ToDoWebApplication.Controllers
                 {
 
                 }
-
                 IEnumerable<ToDoModel> listToDo = new List<ToDoModel>();
                 if (id != null)
                 {
-                    ((List<ToDoModel>)listToDo).Add(session.Get<ToDoModel>(id.Value));
+                    ToDoModel? itemId = session.Get<ToDoModel>(id.Value);
+                    if (itemId != null)
+                    {
+                        ((List<ToDoModel>)listToDo).Add(itemId);
+                    }
                 }
                 else
                 {
@@ -77,17 +80,8 @@ namespace ToDoWebApplication.Controllers
                 }
                 else if (filter.ExpireDateType == ExpireDateType.CurrentWeek)
                 {
-                    DateTime endWeek = DateTime.Today;
-                    for (int i = 0; i <= 7; i++)
-                    {
-                        if (endWeek.DayOfWeek == DayOfWeek.Sunday)
-                        {
-                            break;
-                        }
-                        endWeek = endWeek.AddDays(1);
-                        
-                    }
-                    listToDo = listToDo.Where(i => i.ExpiryDateTime <= endWeek);
+                    Tuple<DateTime,DateTime> currenWeek = Helper.Helper.CurrentWeek;
+                    listToDo = listToDo.Where(i => i.ExpiryDateTime.Date >= currenWeek.Item1 &&  i.ExpiryDateTime.Date <= currenWeek.Item2);
 
                 }
                 ViewData["Filter"] = filter;
@@ -109,7 +103,6 @@ namespace ToDoWebApplication.Controllers
             else
             {
                 updateModel.Done = 1;
-                updateModel.Complete = 100;
                 session.SaveOrUpdate(updateModel);
                 session.Flush();
                 return RedirectToAction(nameof(Index));
