@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<ToDoWebApplication.Models.ToDoModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Todo's";
     ToDoModelFilter filter = ViewData["Filter"] as ToDoModelFilter ?? new ToDoModelFilter();
 }
 
-<h1>Index</h1>
+<h1>Todo's</h1>
 
 <p>
     @using (Html.BeginForm("Index", "ToDo", FormMethod.Post,  filter ))

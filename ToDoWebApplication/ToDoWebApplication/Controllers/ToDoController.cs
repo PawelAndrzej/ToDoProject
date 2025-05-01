@@ -103,6 +103,7 @@ namespace ToDoWebApplication.Controllers
             else
             {
                 updateModel.Done = 1;
+                updateModel.Complete = 100;
                 session.SaveOrUpdate(updateModel);
                 session.Flush();
                 return RedirectToAction(nameof(Index));
@@ -120,6 +121,10 @@ namespace ToDoWebApplication.Controllers
             else
             {
                 updateModel.Done = 0;
+                if(updateModel.Complete == 100)
+                {
+                    updateModel.Complete = 90;
+                }
                 session.SaveOrUpdate(updateModel);
                 session.Flush();
                 return RedirectToAction(nameof(Index));
