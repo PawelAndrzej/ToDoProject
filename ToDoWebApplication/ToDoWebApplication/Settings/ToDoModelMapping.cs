@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Mysqlx.Crud;
-using NHibernate.Mapping.ByCode.Conformist;
+﻿using NHibernate.Mapping.ByCode.Conformist;
 using ToDoWebApplication.Models;
 
 namespace ToDoWebApplication.Settings
@@ -19,6 +17,7 @@ namespace ToDoWebApplication.Settings
             this.Property(x => x.Description, x => x.Column("Description"));
             this.Property(x => x.Complete, x => x.Column("Complete"));
             this.Property(x => x.Done, x => x.Column("Done"));
+
         }
     }
 }

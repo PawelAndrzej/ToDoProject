@@ -1,6 +1,4 @@
-﻿
-
-namespace ToDoWebApplication.Models
+﻿namespace ToDoWebApplication.Models
 {
     //Todo base model
     public class ToDoModel

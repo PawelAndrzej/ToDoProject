@@ -179,14 +179,8 @@ namespace ToDoWebApplication.Controllers
         // GET: ToDoController/Create
         public ActionResult Create()
         {
-            ToDoModel toDo = new ToDoModel()
-            {
-                Title = Settings.Setting.ToDoDefaultTitle,
-                Complete = Settings.Setting.ToDoDefaultComplete,
-                Description = Settings.Setting.ToDoDefaultDescription,
-                ExpiryDateTime = Settings.Setting.ToDoDefaultExpiryDateTime,
-                Done = 0
-            };
+            ToDoModel toDo = new ToDoModel();
+            
             return View(toDo);
         }
 
