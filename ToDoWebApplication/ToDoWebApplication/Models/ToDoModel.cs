@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Web.Virtualization;
-using ToDoWebApplication.Settings;
+﻿
 
 namespace ToDoWebApplication.Models
 {
-
+    //Todo base model
     public class ToDoModel
     {
         public virtual int Id { get; set; }
@@ -15,7 +14,11 @@ namespace ToDoWebApplication.Models
         
         public ToDoModel()
         {
-            
+            Title = Settings.Setting.ToDoDefaultTitle;
+            Description = Settings.Setting.ToDoDefaultTitle;
+            Complete = Settings.Setting.ToDoDefaultComplete;
+            Done = 0;
+            ExpiryDateTime = Settings.Setting.ToDoDefaultExpiryDateTime;
         }
     }
 }

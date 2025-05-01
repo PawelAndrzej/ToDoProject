@@ -1,19 +1,27 @@
 ﻿namespace ToDoWebApplication.Settings
 {
+    //Default data todo
     public class Setting
     {
+        public static byte DefualtDeltaComplete
+        {
+            get
+            {
+                return 10;
+            }
+        }
         public static string ToDoDefaultTitle
         {
             get
             {
-                return "ToDo task";
+                return "Title todo";
             }
         }
         public static string ToDoDefaultDescription
         {
             get
             {
-                return "Default description";
+                return "Description todo";
             }
         }
         public static byte ToDoDefaultComplete

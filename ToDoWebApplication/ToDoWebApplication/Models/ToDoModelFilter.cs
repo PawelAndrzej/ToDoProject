@@ -2,13 +2,15 @@
 
 namespace ToDoWebApplication.Models
 {
+    //Expire date type enum use inf ToModelFilter
     public enum ExpireDateType
     {
         All,
         Today,
         Nextday,
-        IncommingWeek
+        CurrentWeek
     }
+    //Filter to get specific todo's
     public class ToDoModelFilter
     {
         public virtual ExpireDateType ExpireDateType { get; set; }

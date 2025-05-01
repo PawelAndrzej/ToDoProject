@@ -1,5 +1,6 @@
 namespace ToDoWebApplication.Models
 {
+    //Error model
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }

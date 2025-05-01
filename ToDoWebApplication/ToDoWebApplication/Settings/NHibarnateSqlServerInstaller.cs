@@ -1,13 +1,12 @@
-﻿using NHibernate;
-using NHibernate.Cfg;
+﻿using NHibernate.Cfg;
 using NHibernate.Connection;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NHibernate.NetCore;
-using ToDoWebApplication.Models;
 namespace ToDoWebApplication.Settings
 {
+    //Configure NHibarnate with MySql server 
     public static class NHibernateSqlServerInstaller
     {
         public static Configuration BuildHNibernateConfiguration(this IServiceCollection services, string cnString)

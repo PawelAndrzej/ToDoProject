@@ -5,7 +5,8 @@ using ToDoWebApplication.Models;
 
 namespace ToDoWebApplication.Settings
 {
-    public class ToDoModelMapping : ClassMapping<ToDoModel>//JoinedSubclassMapping<ToDoModel>
+    //Mapping nhibarnate
+    public class ToDoModelMapping : ClassMapping<ToDoModel>
     {
         public ToDoModelMapping()
         {
