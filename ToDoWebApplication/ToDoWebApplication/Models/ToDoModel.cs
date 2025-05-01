@@ -15,7 +15,7 @@ namespace ToDoWebApplication.Models
         public ToDoModel()
         {
             Title = Settings.Setting.ToDoDefaultTitle;
-            Description = Settings.Setting.ToDoDefaultTitle;
+            Description = Settings.Setting.ToDoDefaultDescription;
             Complete = Settings.Setting.ToDoDefaultComplete;
             Done = 0;
             ExpiryDateTime = Settings.Setting.ToDoDefaultExpiryDateTime;

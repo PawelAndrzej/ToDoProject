@@ -3,6 +3,7 @@
     //Default data todo
     public class Setting
     {
+      
         public static byte DefualtDeltaComplete
         {
             get
