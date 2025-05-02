@@ -37,7 +37,7 @@
             get
             {
                 return DateTime.Today.AddDays(1).AddMinutes(-1)
-                    .AddDays(7);
+                    .AddDays(1);
             }
         }
     }
