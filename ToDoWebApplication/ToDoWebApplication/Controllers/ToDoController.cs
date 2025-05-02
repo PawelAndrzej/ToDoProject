@@ -141,11 +141,12 @@ namespace ToDoWebApplication.Controllers
             }
             else
             {
-                updateModel.Complete -= Settings.Setting.DefualtDeltaComplete;
-                if (updateModel.Complete < 0)
+                int newComplate = (int)updateModel.Complete - Settings.Setting.DefualtDeltaComplete;
+                if (newComplate < 0)
                 {
-                    updateModel.Complete = 0;
+                    newComplate = 0;
                 }
+                updateModel.Complete = (byte)newComplate;
                 session.SaveOrUpdate(updateModel);
                 session.Flush();
                 return RedirectToAction(nameof(Index));
