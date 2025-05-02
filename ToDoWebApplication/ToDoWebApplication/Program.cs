@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using NHibernate;
 using ToDoWebApplication.Settings;
 
@@ -8,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Add NHibarnate
-var configuration = builder.Services.BuildHNibernateConfiguration("Server=localhost;Port=3306;Database=todo;Uid=root;Pwd=Test123##;");
+var configuration = builder.Services
+    .BuildHNibernateConfiguration
+    ("Server=localhost;Port=3306;Database=todo;Uid=root;Pwd=Test123##;");
 builder.Services.AddSingleton(configuration);
 // Add SessionFactory
 builder.Services.AddSingleton<ISessionFactory>(s => s.GetRequiredService<NHibernate.Cfg.Configuration>().BuildSessionFactory());
