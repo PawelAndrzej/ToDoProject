@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ExternalDll\**" />
+    <Content Remove="ExternalDll\**" />
+    <EmbeddedResource Remove="ExternalDll\**" />
+    <None Remove="ExternalDll\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="NHibernate" Version="5.5.2" />
     <PackageReference Include="NHibernate.AspNetCore.Identity" Version="8.0.1" />
