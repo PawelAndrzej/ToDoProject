@@ -272,6 +272,9 @@ namespace ToDoWebApplication.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        /// <summary>
+        /// Save filter (search criteria) in database
+        /// </summary>
         private void SaveFilter()
         {
             try
@@ -293,6 +296,9 @@ namespace ToDoWebApplication.Controllers
                 
             }
         }
+        /// <summary>
+        /// Load filter (search criteria) from database
+        /// </summary>
         private void UpdateFilter()
         {
             try

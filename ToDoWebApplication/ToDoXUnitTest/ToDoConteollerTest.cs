@@ -24,7 +24,7 @@ namespace ToDoXUnitTest
             Assert.Equal(Setting.ToDoDefaultComplete, model.Complete);
             Assert.Equal(Setting.ToDoDefaultDescription, model.Description);
         }
-        //Test default data model
+        //Test filter data model
         [Fact]
         public void ToDoModelFilterDefaultValueTest()
         {
